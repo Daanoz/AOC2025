@@ -1,0 +1,17 @@
+[workspace]
+resolver = "2"
+members = [
+    "aoc-core",
+    "aoc-procmacro",
+    "aoc-procmacro-internals",
+    "aoc-solutions-2025",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+description = "AoC 2025 solutions"
+repository = "github.com/Daanoz/AOC2025"
+homepage = "https://github.com/Daanoz/AOC2025"
+authors = ["github.com/Daanoz"]
+license = "MIT"

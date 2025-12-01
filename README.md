@@ -4,6 +4,26 @@ Advent Of Code 2025, join the fun on the [Advent of code](http://adventofcode.co
 
 The solutions of 2025 will be written in Rust. I will also be trying out to use proc_macro's to load puzzle data this might be a bit rough since it's the first time trying to implement these.
 
+## How to run
+
+To automatically download puzzle inputs, set the `AOC_SESSION` environment variable, or pass --aoc-session SESSIONID to the run commands.
+
+All solutions:
+```
+cargo run --release
+```
+
+A single day:
+```
+cargo run --release -- --day 1
+```
+
+Run benchmarks:
+```
+cargo bench --bench benchmarks   
+cargo bench --bench benchmarks day1/part1  
+```
+
 ## Solutions
 
 All solutions can be found in the [aoc-solutions-2025/src/solutions](./aoc-solutions-2025/src/solutions/) folder.
@@ -19,3 +39,9 @@ All solutions can be found in the [aoc-solutions-2025/src/solutions](./aoc-solut
 - My [*Advent of Code* 2018](https://github.com/daanoz/AOC2018) solutions
 - My [*Advent of Code* 2017](https://github.com/daanoz/AOC2017) solutions
 - My [*Advent of Code* 2016](https://github.com/daanoz/AOC2016) solutions
+
+## AoC Automation
+
+This code follows the [automation guideline](https://www.reddit.com/r/adventofcode/wiki/faqs/automation).
+
+All inputs and requests are [cached and tagged](./aoc-procmacro-internals/src/fetcher.rs).
