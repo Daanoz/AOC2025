@@ -84,6 +84,11 @@ where
             .iter()
             .flat_map(|(y, row)| row.iter().map(move |(x, value)| ((x, y), value)))
     }
+    pub fn iter_mut(&mut self) -> impl Iterator<Item = ((&K, &K), &mut D)> {
+        self.grid
+            .iter_mut()
+            .flat_map(|(y, row)| row.iter_mut().map(move |(x, value)| ((x, y), value)))
+    }
     pub fn keys(&self) -> impl Iterator<Item = (&K, &K)> {
         self.grid
             .iter()
@@ -249,7 +254,8 @@ where
 }
 
 impl<D> Grid<usize, D> {
-    pub fn neighbors(&self, x: usize, y: usize) -> Vec<(usize, usize)> {
+    /// Get the cardinal neighbors of a cell (north, south, east, west)
+    pub fn cardinal_neighbors(&self, x: usize, y: usize) -> Vec<(usize, usize)> {
         let mut neighbors = Vec::new();
         if let Some(nx) = x.checked_sub(1) {
             neighbors.push((nx, y));
@@ -259,6 +265,26 @@ impl<D> Grid<usize, D> {
         }
         neighbors.push((x + 1, y));
         neighbors.push((x, y + 1));
+        neighbors
+    }
+
+    /// Get all neighbors of a cell (including diagonals)
+    pub fn all_neighbors(&self, x: usize, y: usize) -> Vec<(usize, usize)> {
+        let mut neighbors = Vec::new();
+        if let Some(nx) = x.checked_sub(1) {
+            neighbors.push((nx, y));
+            neighbors.push((nx, y + 1));
+            if let Some(ny) = y.checked_sub(1) {
+                neighbors.push((nx, ny));
+            }
+        }
+        if let Some(ny) = y.checked_sub(1) {
+            neighbors.push((x, ny));
+            neighbors.push((x + 1, ny));
+        }
+        neighbors.push((x + 1, y));
+        neighbors.push((x, y + 1));
+        neighbors.push((x + 1, y + 1));
         neighbors
     }
 }
